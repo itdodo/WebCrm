@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C7C1D947-54FC-4370-834E-DE6FD1FE46C9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Do.Dal</RootNamespace>
+    <AssemblyName>Do.Dal</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="A_test.cs" />
+    <Compile Include="Fish.cs" />
+    <Compile Include="Migrations\201604200206055_AddA_test.cs" />
+    <Compile Include="Migrations\201604200206055_AddA_test.Designer.cs">
+      <DependentUpon>201604200206055_AddA_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sale_Admin.cs" />
+    <Compile Include="Sale_Bars.cs" />
+    <Compile Include="Sale_BillRecord.cs" />
+    <Compile Include="Sale_Bills.cs" />
+    <Compile Include="sysdiagrams.cs" />
+    <Compile Include="Sys_ProcErrorCollection.cs" />
+    <Compile Include="TBankDeposit.cs" />
+    <Compile Include="TBankSerialRes.cs" />
+    <Compile Include="TBankSerialResource.cs" />
+    <Compile Include="TBankWallet.cs" />
+    <Compile Include="TBattleMatchTable.cs" />
+    <Compile Include="TBattleRoomInfo.cs" />
+    <Compile Include="TChangeRecord.cs" />
+    <Compile Include="TChangeRecordUser.cs" />
+    <Compile Include="TCharmExchange.cs" />
+    <Compile Include="TContestDay.cs" />
+    <Compile Include="TContestInfo.cs" />
+    <Compile Include="TContestRecord.cs" />
+    <Compile Include="TContestUserRecord.cs" />
+    <Compile Include="TFasciChangeRecord.cs" />
+    <Compile Include="TGameIPRule.cs" />
+    <Compile Include="TGameKindInfo.cs" />
+    <Compile Include="TGameLock.cs" />
+    <Compile Include="TGameNameInfo.cs" />
+    <Compile Include="TGameRoomBase.cs" />
+    <Compile Include="TGameRoomInfo.cs" />
+    <Compile Include="TGameRoomMsg.cs" />
+    <Compile Include="TGameRoomTable.cs" />
+    <Compile Include="TGameServerInfo.cs" />
+    <Compile Include="TGame_FlowWater.cs" />
+    <Compile Include="TGiveIngotRecord.cs" />
+    <Compile Include="TGMRecord.cs" />
+    <Compile Include="TGM_AwardType.cs" />
+    <Compile Include="TGM_OperationRecord.cs" />
+    <Compile Include="TLockCode.cs" />
+    <Compile Include="TLoginRecord.cs" />
+    <Compile Include="TMatchTable.cs" />
+    <Compile Include="TMoneyChangeRecord.cs" />
+    <Compile Include="TMoneyExceptLog.cs" />
+    <Compile Include="TProc_Error_Log.cs" />
+    <Compile Include="TPropBuyGive.cs" />
+    <Compile Include="TPropDefine.cs" />
+    <Compile Include="TReceiveMoneyDefind.cs" />
+    <Compile Include="TReceiveMoneyRecord.cs" />
+    <Compile Include="TRoomIPRule.cs" />
+    <Compile Include="TRoomRecord.cs" />
+    <Compile Include="TSendMoneyRecord.cs" />
+    <Compile Include="TSendMoneyRecord_New.cs" />
+    <Compile Include="TTransferRecord.cs" />
+    <Compile Include="TUserCallGM.cs" />
+    <Compile Include="TUserInfo.cs" />
+    <Compile Include="TUserList.cs" />
+    <Compile Include="TUserLoginGame.cs" />
+    <Compile Include="TUserNameRule.cs" />
+    <Compile Include="TUserProp.cs" />
+    <Compile Include="TUsers.cs" />
+    <Compile Include="TWLoginRecord.cs" />
+    <Compile Include="TZLoginRecord.cs" />
+    <Compile Include="UserInfoDal.cs" />
+    <Compile Include="VChangeRecord.cs" />
+    <Compile Include="VPropGive.cs" />
+    <Compile Include="VRoomList.cs" />
+    <Compile Include="VUserBuy.cs" />
+    <Compile Include="VUserListReceive.cs" />
+    <Compile Include="VUserListSend.cs" />
+    <Compile Include="VUserProp.cs" />
+    <Compile Include="VUsers.cs" />
+    <Compile Include="VUsersAlbum.cs" />
+    <Compile Include="Web_AdminEmail.cs" />
+    <Compile Include="Web_AdminLog.cs" />
+    <Compile Include="Web_AdminModifyLog.cs" />
+    <Compile Include="Web_Agency.cs" />
+    <Compile Include="Web_AgencyAccountLog.cs" />
+    <Compile Include="Web_AgencyBalanceLog.cs" />
+    <Compile Include="Web_AgencyDayReport.cs" />
+    <Compile Include="Web_AgencyMoneyChangeLog.cs" />
+    <Compile Include="Web_AgencyPercentChange.cs" />
+    <Compile Include="Web_AgencyPopeSet.cs" />
+    <Compile Include="Web_AgencyRMBCost.cs" />
+    <Compile Include="Web_AlmsConfig.cs" />
+    <Compile Include="Web_AlmsDrawLog.cs" />
+    <Compile Include="Web_AnalyData_DateOnline.cs" />
+    <Compile Include="Web_Analy_DateReport.cs" />
+    <Compile Include="Web_Analy_MonthReport.cs" />
+    <Compile Include="Web_Analy_NewUserReport.cs" />
+    <Compile Include="Web_ApplyVipRoom.cs" />
+    <Compile Include="Web_Award.cs" />
+    <Compile Include="Web_AwardLog.cs" />
+    <Compile Include="Web_Card.cs" />
+    <Compile Include="Web_CashConnection.cs" />
+    <Compile Include="Web_CharmExchangeLog.cs" />
+    <Compile Include="Web_CheckAwardList.cs" />
+    <Compile Include="Web_CheckIn.cs" />
+    <Compile Include="Web_CheckInGot.cs" />
+    <Compile Include="Web_CheckInLog.cs" />
+    <Compile Include="Web_CheckInSet.cs" />
+    <Compile Include="Web_ClearFasciPropDefine.cs" />
+    <Compile Include="Web_ClearFasciPropUseLog.cs" />
+    <Compile Include="Web_ClearingLog.cs" />
+    <Compile Include="Web_ClearPropLog.cs" />
+    <Compile Include="Web_Clothes.cs" />
+    <Compile Include="Web_ClothLog.cs" />
+    <Compile Include="Web_CompanyInfo.cs" />
+    <Compile Include="Web_Config.cs" />
+    <Compile Include="Web_ContestAwardConfig.cs" />
+    <Compile Include="Web_ContestAwardLog.cs" />
+    <Compile Include="Web_ContestAwardType.cs" />
+    <Compile Include="Web_ContestRank.cs" />
+    <Compile Include="Web_Count_AgencyOnline.cs" />
+    <Compile Include="Web_Count_OnlineUsers.cs" />
+    <Compile Include="Web_Count_RoomOnline.cs" />
+    <Compile Include="Web_CreateID.cs" />
+    <Compile Include="Web_DataAnaly_Users.cs" />
+    <Compile Include="Web_DataClearLog.cs" />
+    <Compile Include="Web_DayTaxReport.cs" />
+    <Compile Include="Web_Exchange.cs" />
+    <Compile Include="Web_FasciExchangeConfig.cs" />
+    <Compile Include="Web_FasciExchangeLog.cs" />
+    <Compile Include="Web_FineryID.cs" />
+    <Compile Include="Web_FriendLink.cs" />
+    <Compile Include="Web_GameGuidList.cs" />
+    <Compile Include="Web_GameInfo.cs" />
+    <Compile Include="Web_GameMain.cs" />
+    <Compile Include="Web_GameType.cs" />
+    <Compile Include="Web_GUID.cs" />
+    <Compile Include="Web_IndexFlash.cs" />
+    <Compile Include="web_IngotChangeGold.cs" />
+    <Compile Include="Web_IngotChangeLog.cs" />
+    <Compile Include="Web_IngotTransLog.cs" />
+    <Compile Include="Web_Log.cs" />
+    <Compile Include="Web_LotterAward.cs" />
+    <Compile Include="Web_LotterConfig.cs" />
+    <Compile Include="Web_LotteriesLog.cs" />
+    <Compile Include="Web_LotterLog.cs" />
+    <Compile Include="Web_LotterSpecial.cs" />
+    <Compile Include="Web_manage_admin.cs" />
+    <Compile Include="Web_Manage_Model.cs" />
+    <Compile Include="Web_Manage_Popedom.cs" />
+    <Compile Include="Web_MenuOften.cs" />
+    <Compile Include="Web_MoneyChangeLog.cs" />
+    <Compile Include="Web_MoneyStatEveryday.cs" />
+    <Compile Include="Web_msg.cs" />
+    <Compile Include="Web_NewsData.cs" />
+    <Compile Include="Web_NewsType.cs" />
+    <Compile Include="Web_PayPropRecord.cs" />
+    <Compile Include="Web_PConfig.cs" />
+    <Compile Include="Web_PlatWinLostDateReport.cs" />
+    <Compile Include="Web_PlayerDayReport.cs" />
+    <Compile Include="Web_PointChangeLog.cs" />
+    <Compile Include="Web_ProductList.cs" />
+    <Compile Include="Web_PropChangeLog.cs" />
+    <Compile Include="Web_PVAndIPStat.cs" />
+    <Compile Include="Web_RMBCost.cs" />
+    <Compile Include="Web_Role.cs" />
+    <Compile Include="Web_RoleBeAdmin.cs" />
+    <Compile Include="Web_RoleBeMenu.cs" />
+    <Compile Include="Web_RoleMenu.cs" />
+    <Compile Include="Web_System.cs" />
+    <Compile Include="Web_TaxStatEveryDay.cs" />
+    <Compile Include="Web_TGClearingRecord.cs" />
+    <Compile Include="Web_TGPayRecord.cs" />
+    <Compile Include="Web_TransfersAccount.cs" />
+    <Compile Include="Web_TransLog.cs" />
+    <Compile Include="Web_TuiGuang.cs" />
+    <Compile Include="Web_TuiGuangLog.cs" />
+    <Compile Include="Web_UserAlbum.cs" />
+    <Compile Include="Web_UserAlbumColumn.cs" />
+    <Compile Include="Web_UserApplyVipRecord.cs" />
+    <Compile Include="Web_UserEmail.cs" />
+    <Compile Include="Web_UserModifyLog.cs" />
+    <Compile Include="Web_Users.cs" />
+    <Compile Include="Web_vAgencyAccountLog.cs" />
+    <Compile Include="Web_vAgencyAndPlayerSumPoint_List.cs" />
+    <Compile Include="Web_VAgencyBalanceLog.cs" />
+    <Compile Include="Web_vAgencyExchange.cs" />
+    <Compile Include="Web_vAgencyList.cs" />
+    <Compile Include="Web_vAgencySpareValue.cs" />
+    <Compile Include="Web_vAgencySpareValueLog.cs" />
+    <Compile Include="Web_VAgency_UserPayList.cs" />
+    <Compile Include="Web_ValmsDrawRecord.cs" />
+    <Compile Include="Web_VAnalyData_DateOnline.cs" />
+    <Compile Include="Web_VAnaly_AgencyDateReport.cs" />
+    <Compile Include="Web_VAnaly_DateReport.cs" />
+    <Compile Include="Web_VAnaly_GameCountAndTax.cs" />
+    <Compile Include="Web_VAnaly_NewUserPayList.cs" />
+    <Compile Include="Web_VAnaly_NewUserReport.cs" />
+    <Compile Include="Web_VAnaly_PayList.cs" />
+    <Compile Include="Web_VAnaly_UserList24A.cs" />
+    <Compile Include="Web_VAnaly_UserList24B.cs" />
+    <Compile Include="Web_VAnaly_UserListReg.cs" />
+    <Compile Include="Web_VApplyVipRoom.cs" />
+    <Compile Include="Web_vAwardLog.cs" />
+    <Compile Include="Web_vAwardRecord.cs" />
+    <Compile Include="Web_VBankDeposit.cs" />
+    <Compile Include="Web_vBankMoneyOpera.cs" />
+    <Compile Include="Web_vBuyPropLog.cs" />
+    <Compile Include="Web_vBuyVipLog.cs" />
+    <Compile Include="Web_VChangeRecord.cs" />
+    <Compile Include="Web_VCharmExchange.cs" />
+    <Compile Include="Web_VClearPropLog.cs" />
+    <Compile Include="Web_VDataList.cs" />
+    <Compile Include="Web_vExchangeFasciLog.cs" />
+    <Compile Include="Web_vFaciSum.cs" />
+    <Compile Include="Web_VFasciClearPropLog.cs" />
+    <Compile Include="Web_VFasciExchangeLog.cs" />
+    <Compile Include="Web_VGameKindList.cs" />
+    <Compile Include="Web_VGameNameInfo.cs" />
+    <Compile Include="Web_vGameRecord.cs" />
+    <Compile Include="Web_VGameRoomInfo.cs" />
+    <Compile Include="Web_VGameRoomInfo2.cs" />
+    <Compile Include="Web_VGameRoomInfo3.cs" />
+    <Compile Include="Web_VGetAgencyDetail1.cs" />
+    <Compile Include="Web_VGetPlayDetail.cs" />
+    <Compile Include="Web_VGetUserOnline.cs" />
+    <Compile Include="web_vGetVipLog.cs" />
+    <Compile Include="Web_vIngotTransferLog.cs" />
+    <Compile Include="Web_VLoginRecord.cs" />
+    <Compile Include="Web_VLotterLog.cs" />
+    <Compile Include="Web_VLotterSpecial.cs" />
+    <Compile Include="Web_VMatchAwardConfig.cs" />
+    <Compile Include="Web_VMatchLog.cs" />
+    <Compile Include="Web_VMatchTable.cs" />
+    <Compile Include="web_vMoneyChangeLog.cs" />
+    <Compile Include="Web_VMoneyChangeRecord.cs" />
+    <Compile Include="Web_vNewsList.cs" />
+    <Compile Include="web_VPlayerLoginLog.cs" />
+    <Compile Include="Web_vPlayerSpareValue.cs" />
+    <Compile Include="Web_VPropBuyGive.cs" />
+    <Compile Include="Web_VReceiveMoneyLog.cs" />
+    <Compile Include="Web_vSendMoneyRecord_New.cs" />
+    <Compile Include="Web_vTaxStatEveryday.cs" />
+    <Compile Include="Web_VTContestRoom.cs" />
+    <Compile Include="web_VTGBalanceLog.cs" />
+    <Compile Include="Web_VTGLog.cs" />
+    <Compile Include="web_vTGpayClearing.cs" />
+    <Compile Include="Web_vTransferLog.cs" />
+    <Compile Include="Web_VTransLog.cs" />
+    <Compile Include="Web_VTuiGuang.cs" />
+    <Compile Include="Web_vUserAlbumColumn.cs" />
+    <Compile Include="Web_vUserAllMoneyChangeLog.cs" />
+    <Compile Include="Web_VUserBattlePoint.cs" />
+    <Compile Include="Web_VUserEmail.cs" />
+    <Compile Include="Web_VUserGameMoney.cs" />
+    <Compile Include="Web_vUserList.cs" />
+    <Compile Include="Web_vUserList_New.cs" />
+    <Compile Include="Web_vUserLoginList.cs" />
+    <Compile Include="Web_vUserMoneyRank.cs" />
+    <Compile Include="Web_vUserPoint.cs" />
+    <Compile Include="Web_vUserPropertyAnaly.cs" />
+    <Compile Include="Web_vUserPropertyReport.cs" />
+    <Compile Include="Web_VUsersList.cs" />
+    <Compile Include="Web_vUserTime.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201604200206055_AddA_test.resx">
+      <DependentUpon>201604200206055_AddA_test.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

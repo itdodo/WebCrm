@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace WebApplication1
+namespace Do.Web
 {
     public class BundleConfig
     {
@@ -26,6 +25,27 @@ namespace WebApplication1
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+
+            //UI
+            bundles.Add(new StyleBundle("~/Script/bui/assets/css").Include(
+                     "~/Scripts/bui/assets/css/dpl-min.css",
+                     "~/Scripts/bui/assets/css/bui.css",
+                     "~/Scripts/bui/assets/css/main.css",
+                      "~/Content/site.css"
+                ));
+            //bundles.Add(new ScriptBundle("~/Script/bui/assets/js").Include(
+            //        "~/Scripts/bui/jquery-1.8.1.min.js",
+            //         "~/Scripts/bui/seed-min.js"
+            //    ));
+
+            bundles.Add(new ScriptBundle("~/Script/bui/assets/js").Include(
+                 "~/Scripts/bui/assets/js/jquery-1.8.1.min.js",
+                 "~/Scripts/bui/assets/js/bui.js",
+                 "~/Scripts/bui/assets/js/config.js",
+                 "~/Scripts/jquery.nicescroll.js",
+                 "~/Scripts/base.js"
+            ));
         }
     }
 }

@@ -1,31 +1,127 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "财务";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="header">
+
+    <div class="dl-title">
+        <a href="http://www.builive.com" title="文档库地址" target="_blank">
+            <!-- 仅仅为了提供文档的快速入口，项目中请删除链接 -->
+            <span class="lp-title-port">NNTI</span><span class="dl-title-text">财务管理系统</span>
+        </a>
+    </div>
+    <div class="dl-log">
+        欢迎您，<span class="dl-log-user">Dong</span><a href="/home/login" title="退出系统" class="dl-log-quit">[退出]</a>
+    </div>
+</div>
+<div class="content">
+    <div class="dl-main-nav">
+        <div class="dl-inform">
+            <div class="dl-inform-title">贴心小秘书<s class="dl-inform-icon dl-up"></s>
+            </div>
+        </div>
+        <ul id="J_Nav" class="nav-list ks-clear">
+            <li class="nav-item dl-selected">
+                <div class="nav-item-inner nav-home">系统管理</div></li>
+            <li class="nav-item">
+                <div class="nav-item-inner nav-order">业务管理</div></li>
+            @*<li class="nav-item">
+                <div class="nav-item-inner nav-inventory">搜索页</div></li>
+            <li class="nav-item">
+                <div class="nav-item-inner nav-supplier">详情页</div></li>*@
+        </ul>
+    </div>
+    <ul id="J_NavContent" class="dl-tab-conten"></ul>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+<script>
+    BUI.use('common/main',function(){
+      var config = [{
+          id:'menu',
+          homePage : 'code',
+          menu:[{
+              text:'用户管理',
+              items:[
+                {id:'code',text:'用户列表1',href:'/home/contact',closeable : false},
+                {id:'main-menu',text:'用户列表2',href:'main/menu.html'},
+                {id:'second-menu',text:'用户列表3',href:'main/second-menu.html'},
+                {id:'dyna-menu',text:'用户列表4',href:'main/dyna-menu.html'}
+              ]
+            },{
+              text:'角色管理',
+              items:[
+                {id:'operation',text:'角色1',href:'/home/about'},
+                { id: 'quick', text: '角色2', href: 'main/quick.html' }
+              ]
+            },{
+              text:'权限管理',
+              items:[
+                {id:'resource',text:'菜单管理',href:'/System/Permission/Menu'},
+                { id: 'loader', text: '权限2', href: 'main/loader.html' }
+              ]
+            }]
+          },{
+            id:'form',
+            menu:[{
+                text:'表单页面',
+                items:[
+                  {id:'code',text:'测试',href:'form/code.html'},
+                  { id: 'example', text: '测试', href: 'form/example.html' },
+                  { id: 'introduce', text: '测试', href: 'form/introduce.html' },
+                  { id: 'valid', text: '测试', href: 'form/basicValid.html' },
+                  { id: 'advalid', text: '测试', href: 'form/advalid.html' },
+                  { id: 'remote', text: '测试', href: 'form/remote.html' },
+                  { id: 'group', text: '测试', href: 'form/group.html' },
+                  { id: 'depends', text: '测试', href: 'form/depends.html' }
+                ]
+              },{
+                text:'成功失败页面',
+                items:[
+                  {id:'success',text:'成功页面',href:'form/success.html'},
+                  {id:'fail',text:'失败页面',href:'form/fail.html'}
+
+                ]
+              },{
+                  text: '测试',
+                items:[
+                  { id: 'grid', text: '测试', href: 'form/grid.html' },
+                  { id: 'form-grid', text: '测试', href: 'form/form-grid.html' },
+                  { id: 'dialog-grid', text: '测试', href: 'form/dialog-grid.html' },
+                  { id: 'form-dialog-grid', text: '测试', href: 'form/form-dialog-grid.html' }
+                ]
+              }]
+          },{
+            id:'search',
+            menu:[{
+                text:'搜索页面',
+                items:[
+                  {id:'code',text:'搜索页面代码',href:'search/code.html'},
+                  {id:'example',text:'搜索页面示例',href:'search/example.html'},
+                  {id:'example-dialog',text:'搜索页面编辑示例',href:'search/example-dialog.html'},
+                  {id:'introduce',text:'搜索页面简介',href:'search/introduce.html'},
+                  {id:'config',text:'搜索配置',href:'search/config.html'}
+                ]
+              },{
+                text : '更多示例',
+                items : [
+                  {id : 'tab',text : '使用tab过滤',href : 'search/tab.html'}
+                ]
+              }]
+          },{
+            id:'detail',
+            menu:[{
+                text:'详情页面',
+                items:[
+                  {id:'code',text:'详情页面代码',href:'detail/code.html'},
+                  {id:'example',text:'详情页面示例',href:'detail/example.html'},
+                  {id:'introduce',text:'详情页面简介',href:'detail/introduce.html'}
+                ]
+              }]
+          }];
+
+      
+      new PageUtil.MainPage({
+        modulesConfig : config
+      });
+    });
+</script>
