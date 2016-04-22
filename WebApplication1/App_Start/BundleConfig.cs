@@ -46,6 +46,13 @@ namespace Do.Web
                  "~/Scripts/jquery.nicescroll.js",
                  "~/Scripts/base.js"
             ));
+
+
+            bundles.Add(new ScriptBundle("~/Script/ajaxjs").Include(
+                 "~/Scripts/jquery.validate.min.js",
+                 "~/Scripts/jquery.validate.unobtrusive.js",
+                 "~/Scripts/jquery.unobtrusive-ajax.min.js"
+            ));
         }
     }
 }

@@ -164,6 +164,7 @@
     <Content Include="Areas\System\Views\_ViewStart.cshtml" />
     <Content Include="Areas\System\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\System\Views\Permission\Menu.cshtml" />
+    <Content Include="Areas\System\Views\Permission\AddMenu.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\BUI\assets\css\bui.css" />
     <Content Include="Scripts\BUI\assets\img\iconfont\iconfont.svg" />
@@ -204,6 +205,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.nicescroll.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -433,9 +436,17 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Do.Dal\Do.Dal.csproj">
-      <Project>{c7c1d947-54fc-4370-834e-de6fd1fe46c9}</Project>
-      <Name>Do.Dal</Name>
+    <ProjectReference Include="..\Do.Bll\Do.Bll.csproj">
+      <Project>{259561a0-b59c-4f95-80c4-4283908e14df}</Project>
+      <Name>Do.Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Do.Common\Do.Common.csproj">
+      <Project>{04c04fe9-d091-4eae-b254-05cc19231621}</Project>
+      <Name>Do.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Do.Entity\Do.Entity.csproj">
+      <Project>{612af5fe-bae2-425a-8b24-b543c22281e4}</Project>
+      <Name>Do.Entity</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

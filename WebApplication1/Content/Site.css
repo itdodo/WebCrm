@@ -19,3 +19,10 @@ iframe{ width: 99%;}
 .main-content {
     padding: 10px;
 }
+
+.main-content div {
+
+}
+.bui-grid-table .bui-grid-hd {
+    border-bottom: none;
+}

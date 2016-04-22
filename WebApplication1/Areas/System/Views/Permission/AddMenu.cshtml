@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<div class="row">
+    @using (Ajax.BeginForm("PostMenu", "Permission", new AjaxOptions { HttpMethod = "Post",OnSuccess = "onSuccess"},new {@class = "form-horizontal well",id="addform",name="addform" }))
+    {
+        <div class="row">
+            <div class="control-group">
+                <label class="control-label">菜单名称：</label>
+                <div class="controls">
+                    
+                    <input type="text" name="MenuName" class="control-text">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">菜单地址：</label>
+                <div class="controls">
+                    <input type="text" name="MenuUrl" class="control-text">
+                </div>
+            </div>
+        </div>
+    }
+</div>
