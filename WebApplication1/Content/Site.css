@@ -4,6 +4,9 @@
     padding: 0;
     margin: 0;
 }
+
+html,body{ height: 100%;}
+
 iframe{ width: 99%;}
 .tab-content-container iframe {
     padding: 5px;
@@ -18,6 +21,8 @@ iframe{ width: 99%;}
 
 .main-content {
     padding: 10px;
+    height: 100%;
+    /*overflow-y: scroll;*/
 }
 
 .main-content div {

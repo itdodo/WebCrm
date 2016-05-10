@@ -1,6 +1,22 @@
 ﻿
 $(function() {
-
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
     //console.log($('#main-content').html());
     $('.main-content').height($(window).height() - 50);
     $('.main-content').niceScroll({
@@ -26,11 +42,40 @@ $(function() {
 
 
 function onSuccess(data) {
-    BUI.Message.Alert('123123', 'success');
+    //BUI.Message.Alert('123123', 'success');
     if (data.Code === 200) {
-        BUI.Message.Alert(data.Msg, 'success');
+        showSuccess(data.Msg);
+        //BUI.Message.Alert(data.Msg, 'success');
     } else {
-        BUI.Message.Alert(data.Msg, 'error');
+        showError(data.Msg);
+        //BUI.Message.Alert(data.Msg, 'error');
     }
 
+}
+
+function ChangeDateFormat(jsondate) {
+    jsondate = jsondate.replace("/Date(", "").replace(")/", "");
+    if (jsondate.indexOf("+") > 0) {
+        jsondate = jsondate.substring(0, jsondate.indexOf("+"));
+    }
+    else if (jsondate.indexOf("-") > 0) {
+        jsondate = jsondate.substring(0, jsondate.indexOf("-"));
+    }
+
+    var date = new Date(parseInt(jsondate, 10));
+    var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+    var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+    return date.getFullYear() + "-" + month + "-" + currentDate +" "+ date.toLocaleTimeString();
+}
+
+function deleteData() {
+    
+}
+
+function showSuccess(msg) {
+    toastr["success"](msg);
+}
+
+function showError(msg) {
+    toastr["error"](msg);
 }

@@ -2,24 +2,36 @@
 @{
     Layout = null;
 }
-
-
 <div class="row">
-    @using (Ajax.BeginForm("PostMenu", "Permission", new AjaxOptions { HttpMethod = "Post",OnSuccess = "onSuccess"},new {@class = "form-horizontal well",id="addform",name="addform" }))
+    @using (Ajax.BeginForm("AddMenu", "Permission", new AjaxOptions { HttpMethod = "Post",OnSuccess = "onSuccess"},new {@class = "form-horizontal",id="addform",name="addform" }))
     {
         <div class="row">
             <div class="control-group">
+                <label class="control-label">父级菜单：</label>
+                <div class="controls">
+                    @Html.DropDownList("ParentId",ViewBag.dropList as SelectList)
+                </div>
+            </div>
+            <div class="control-group">
                 <label class="control-label">菜单名称：</label>
                 <div class="controls">
-                    
-                    <input type="text" name="MenuName" class="control-text">
+                    <input type="text" name="Name" class="control-text">
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">菜单地址：</label>
                 <div class="controls">
-                    <input type="text" name="MenuUrl" class="control-text">
+                    <input type="text" name="Url" class="control-text">
                 </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">排序：</label>
+                <div class="controls">
+                    <input type="text" name="Sort" class="control-text">
+                </div>
+            </div>
+            <div class="form-actions offset3">
+                <button class="button button-primary" type="submit">确定</button>
             </div>
         </div>
     }

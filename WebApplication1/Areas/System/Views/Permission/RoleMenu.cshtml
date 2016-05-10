@@ -1,0 +1,107 @@
+﻿
+@{
+    //Layout = null;
+    ViewBag.Title = "角色菜单管理";
+}
+@using Do.Bll
+@model List<Do.Db.Oracle.SysMenu>
+
+<style>
+    .tr-m2 td:first-child{padding-left: 30px;}
+    .tr-m3 td:first-child{padding-left: 60px;}
+</style>
+<div class="main-content">
+    
+    <div class="row">
+
+    </div>
+    <div class="row">
+        @{
+            var mBll = new MenuBll();
+        }
+    @using (Ajax.BeginForm("AddRoleMenu", "Permission", new AjaxOptions { HttpMethod = "Post", OnSuccess = "onSuccess" }, new { @class = "form-horizontal", id = "addform", name = "addform" }))
+    {
+        <div class="control-group">
+            <label class="control-label">角色：</label>
+            @Html.DropDownList("RoleId", ViewBag.dropList as SelectList,new {onchange= "getMenuListByRoleId($(this).val())" })
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>@*<input type="checkbox" name="chkAll" id="chkAll" class="checkbox" />*@名称</th>
+                <th>地址</th>
+                <th>创建者</th>
+                <th>创建时间</th>
+            </tr>
+
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name='MenuId_@item.MenuId' value="@item.MenuId" class="checkbox"/>@item.Name
+                    </td>
+                    <td>@item.Url</td>
+                    <td>@item.CreateBy</td>
+                    <td>@item.CreateAt</td>
+                </tr>
+                foreach (var m2 in mBll.GetMenuByPid(item.MenuId))
+                {
+                    <tr class="tr-m2">
+                        <td><input type="checkbox" name="MenuId_@m2.MenuId" value="@m2.MenuId" class="checkbox"/>@m2.Name</td>
+                        <td>@m2.Url</td>
+                        <td>@m2.CreateBy</td>
+                        <td>@m2.CreateAt</td>
+                    </tr>
+                    foreach (var m3 in mBll.GetMenuByPid(m2.MenuId))
+                    {
+                        <tr class="tr-m3">
+                            <td><input type="checkbox" name="MenuId_@m3.MenuId" value="@m3.MenuId" class="checkbox"/>@m3.Name</td>
+                            <td>@m3.Url</td>
+                            <td>@m3.CreateBy</td>
+                            <td>@m3.CreateAt</td>
+                        </tr>
+                    }
+                }
+
+            }
+
+
+        </table>
+
+        <div class="row">
+            <div class="span16">
+                <p>
+                    <button id="btnAdd" type="submit" class="button button-primary">确定</button>
+                </p>
+            </div>
+        </div>
+    }
+        
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function() {
+
+    });
+
+    //通过角色ID 获取菜单列表
+    function getMenuListByRoleId(rid) {
+        $.get("/System/Permission/GetMenuListByRoleId?rid=" + rid, function(d) {
+            var eles = $("input[type=checkbox]");
+            eles.attr("checked", false);
+            $(d).each(function(i,t) {
+                eles.each(function (i2, t2) {
+                    if ($(t2).val() == t.MenuId) {
+                        $(t2).attr("checked", true);
+                    }
+                });
+
+            });
+            
+        });
+    }
+
+</script>

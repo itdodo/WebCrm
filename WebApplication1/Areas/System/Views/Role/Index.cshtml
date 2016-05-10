@@ -1,0 +1,89 @@
+﻿
+@{
+    //Layout = null;
+    ViewBag.Title = "菜单管理";
+}
+@model List<Do.Db.Oracle.SysRole>
+<div class="main-content">
+    <div class="row">
+        <div class="span16">
+            <p>
+                <button id="btnAdd" class="button button-primary">添加</button>
+            </p>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>名称</th>
+                        <th>创建者</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.CreateBy</td>
+                        <td>@item.CreateAt</td>
+                        <td><a class="button button-info button-small">修改</a>&nbsp;&nbsp;&nbsp;<a onclick="delMenu('@item.RoleId')" class="button button-danger button-small">删除</a></td>
+                    </tr>
+                }
+
+
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+
+    $(function() {
+
+    });
+
+    function search(parameters) {
+
+    }
+
+    $('#btnAdd').on('click', function() {
+        //dialog.set({ effect: "fade", duration: 400 });
+        //弹出对话框
+        var Overlay = BUI.Overlay;
+        var dialog = new Overlay.Dialog({
+            title: '新增菜单',
+            width: 500,
+            //height: 250,
+            loader: {
+                url: "/System/Role/AddRole"
+            },
+            buttons: [],
+            //bodyContent: '<p></p>',
+            success: function() {
+                //$("#addform").submit();
+
+
+                this.close();
+            }
+        });
+        dialog.show();
+    });
+
+    function delMenu(id) {
+        BUI.Message.Confirm('确认要删除么？', function () {
+            //setTimeout(function () {
+            //    BUI.Message.Alert('这只是简单的错误信息', 'error');
+            //});
+            //alert(1);
+            $.post("/System/Role/DeleteRole",{id:id});
+        }, 'question');
+    }
+</script>
+}

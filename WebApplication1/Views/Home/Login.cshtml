@@ -2,7 +2,7 @@
 @{
     Layout = null;
 }
-
+@model Do.Web.Backend.Controllers.LoginViewModel
 <STYLE>
     body {
         background: #ebebeb;
@@ -33,6 +33,7 @@
         -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
         -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
         transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        vertical-align: middle;
     }
 
         .ipt:focus {
@@ -124,67 +125,133 @@
         top: -21px;
         left: 210px;
     }
+
+    .vcode {
+        width: 240px;
+    }
+
+        .p_lock {
+        background: url("/Content/images/login-lock.png") no-repeat;
+        padding: 10px 10px;
+        position: absolute;
+        top: 12px;
+        left: 65px;
+    }
+
+        .btn_login {
+            background: rgb(0, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255);font-weight: bold;
+            margin-top: 8px;
+        }
 </STYLE>
+<link href="~/Scripts/toastr/toastr.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/toastr/toastr.min.js"></script>
 <SCRIPT type="text/javascript">
-$(function(){
-	//得到焦点
-	$("#password").focus(function(){
-		$("#left_hand").animate({
-			left: "150",
-			top: " -38"
-		},{step: function(){
-			if(parseInt($("#left_hand").css("left"))>140){
-				$("#left_hand").attr("class","left_hand");
-			}
-		}}, 2000);
-		$("#right_hand").animate({
-			right: "-64",
-			top: "-38px"
-		},{step: function(){
-			if(parseInt($("#right_hand").css("right"))> -70){
-				$("#right_hand").attr("class","right_hand");
-			}
-		}}, 2000);
-	});
-	//失去焦点
-	$("#password").blur(function(){
-		$("#left_hand").attr("class","initial_left_hand");
-		$("#left_hand").attr("style","left:100px;top:-12px;");
-		$("#right_hand").attr("class","initial_right_hand");
-		$("#right_hand").attr("style","right:-112px;top:-12px");
-	});
-});
+    $(function () {
+        $("#valicode").bind("click", function () {
+            this.src = "/Home/GetValidateCode?time=" + (new Date()).getTime();
+        });
+        //得到焦点
+        $("#Password").focus(function () {
+            $("#left_hand").animate({
+                left: "150",
+                top: " -38"
+            }, {
+                step: function () {
+                    if (parseInt($("#left_hand").css("left")) > 140) {
+                        $("#left_hand").attr("class", "left_hand");
+                    }
+                }
+            }, 2000);
+            $("#right_hand").animate({
+                right: "-64",
+                top: "-38px"
+            }, {
+                step: function () {
+                    if (parseInt($("#right_hand").css("right")) > -70) {
+                        $("#right_hand").attr("class", "right_hand");
+                    }
+                }
+            }, 2000);
+        });
+        //失去焦点
+        $("#Password").blur(function () {
+            $("#left_hand").attr("class", "initial_left_hand");
+            $("#left_hand").attr("style", "left:100px;top:-12px;");
+            $("#right_hand").attr("class", "initial_right_hand");
+            $("#right_hand").attr("style", "right:-112px;top:-12px");
+        });
+        $("#UserName").focus();
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "3000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        //toastr["success"]("Have fun storming the castle!");
+    });
+
+    function onSuccess(d) {
+        if (d.Code == "200") {
+            toastr["success"]("登陆成功！正在跳转...");
+            document.location.href = "/Home/Index";
+            return;
+        }
+        toastr["error"](d.Msg);
+    }
 </SCRIPT>
 
 
 
 <DIV class="top_div"></DIV>
-<DIV style="background: rgb(255, 255, 255); margin: -100px auto auto; border: 1px solid rgb(231, 231, 231); border-image: none; width: 400px; height: 200px; text-align: center;">
-    <DIV style="width: 165px; height: 96px; position: absolute;">
-        <DIV class="tou"></DIV>
-        <DIV class="initial_left_hand" id="left_hand"></DIV>
-        <DIV class="initial_right_hand" id="right_hand"></DIV>
-    </DIV>
-    <P style="padding: 30px 0px 10px; position: relative;">
-        <SPAN class="u_logo"></SPAN>         <INPUT class="ipt" type="text" placeholder="请输入用户名或邮箱" value="">
-    </P>
-    <P style="position: relative;">
-        <SPAN class="p_logo"></SPAN>
-        <INPUT class="ipt" id="password" type="password" placeholder="请输入密码" value="">
-    </P>
-    <DIV style="height: 50px; line-height: 50px; margin-top: 30px; border-top-color: rgb(231, 231, 231); border-top-width: 1px; border-top-style: solid;">
-        <P style="margin: 0px 35px 20px 45px;">
-            <SPAN style="float: left;">
-                <A style="color: rgb(204, 204, 204);"
-                   href="#">忘记密码?</A>
-            </SPAN>
-            <SPAN style="float: right;">
-                @*<A style="color: rgb(204, 204, 204); margin-right: 10px;"
-                   href="#">注册</A>*@
-                <A style="background: rgb(0, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;"
-                   href="/Home/index">登录</A>
-            </SPAN>
-        </P>
-    </DIV>
-</DIV>
+@using (Ajax.BeginForm("Login", "Home", new AjaxOptions { HttpMethod = "Post",OnSuccess = "onSuccess"}))
+{
+    <div style="background: rgb(255, 255, 255); margin: -100px auto auto; border: 1px solid rgb(231, 231, 231); border-image: none; width: 400px; height: 250px; text-align: center;">
+        <div style="width: 165px; height: 96px; position: absolute;">
+            <div class="tou"></div>
+            <div class="initial_left_hand" id="left_hand"></div>
+            <div class="initial_right_hand" id="right_hand"></div>
+        </div>
+        <p style="padding: 30px 0px 10px; position: relative;">
+            <span class="u_logo"></span>
+            @Html.TextBoxFor(c => c.UserName, null, new { @class = "ipt", placeholder = "请输入用户名" })
+        </p>
+        <p style="position: relative; padding-bottom: 10px;">
+            <span class="p_logo"></span>
+            @Html.PasswordFor(c => c.Password, new { @class = "ipt",@placeholder="请输入密码" })
+        </p>
+        <p style="position: relative;">
+            <span class="p_lock"></span>
+            @Html.TextBoxFor(c => c.VCode, null, new { @class = "ipt vcode", placeholder = "请输入验证码" })
+            <img id="valicode" style="cursor: pointer; vertical-align: middle;" src="/home/getvalidatecode" alt="验证码" />
+        </p>
+        <p>
+            @*@Html.ValidationSummary()*@
+        </p>
+        <div style="height: 50px; line-height: 50px; margin-top: 30px; border-top-color: rgb(231, 231, 231); border-top-width: 1px; border-top-style: solid;">
+            <p style="margin: 0px 35px 20px 45px;">
+                <span style="float: right;">
+                    @*<a style="color: rgb(204, 204, 204); margin-right: 10px;"
+                        href="#">注册</a>*@
+                    <button class="btn_login" type="submit">登陆</button>
+                </span>
+            </p>
+        </div>
+    </div>
+}
+

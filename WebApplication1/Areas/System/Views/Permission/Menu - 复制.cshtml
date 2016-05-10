@@ -1,0 +1,115 @@
+﻿
+@{
+    //Layout = null;
+    ViewBag.Title = "菜单管理";
+}
+
+<div class="main-content">
+    <div class="row">
+        <div class="span16">
+            <p>
+                <button id="btnAdd" class="button button-primary">新增菜单</button>
+                <button id="btnSearch" class="button button-primary">搜索</button>
+            </p>            
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="">
+            <div id="grid">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    
+    $(function () {
+        initDataGrid(false);
+    });
+    $('#btnSearch').on('click', search);
+
+    function search(parameters) {
+        //mystore.autoLoad = true;
+        $("#grid").html("");
+        initDataGrid(true);
+    }
+
+    var mystore;
+    var mygrid;
+    var mycolumn;
+
+    function initDataGrid(parameters) {
+        var Grid = BUI.Grid;
+        var Data = BUI.Data;
+        var Store = Data.Store;
+        //定义列头
+        mycolumn = [
+            { id: '123', title: '菜单名称', dataIndex: 'Name', width: 100 },
+            { title: 'Url', dataIndex: 'Url', width: 100 },
+            { title: '创建者', dataIndex: 'CreateBy', width: 100 },
+            {
+                title: '创建时间',
+                dataIndex: 'CreateAt',
+                width: 200,
+                renderer: function(value) {
+                    return ChangeDateFormat(value);
+                }
+            },
+            {title:'操作',renderer:function() {
+                return "<button onclick='deleteById()' class='button button-mini button-danger'>删除</button>";
+            }}
+        ];
+        mystore = new Store({
+            url: '/System/Permission/GetMenuList',
+            autoLoad: parameters, //自动加载数据
+            params: {
+                //配置初始请求的参数
+                pageSize: 20
+            },
+            pageSize: 2 // 配置分页数目
+        });
+        mygrid = new Grid.Grid({
+            render: '#grid',
+            columns: mycolumn,
+            loadMask: true, //加载数据时显示屏蔽层
+            store: mystore,
+            forceFit: true,//宽度自适应
+            height: $(document).height() - 90,
+            plugins: [Grid.Plugins.AutoFit, Grid.Plugins.CheckSelection, Grid.Plugins.RowNumber],  // 插件形式引入自适应宽度
+            // 底部工具栏
+            bbar: {
+                // pagingBar:表明包含分页栏
+                pagingBar: true
+            }
+        });
+
+        mygrid.render();
+    }
+
+    $('#btnAdd').on('click', function () {
+        //dialog.set({ effect: "fade", duration: 400 });
+        //弹出对话框
+        var Overlay = BUI.Overlay;
+        var dialog = new Overlay.Dialog({
+            title: '新增菜单',
+            width: 500,
+            height: 250,
+            loader: {
+                url: "/System/Permission/AddMenu"
+            },
+            //bodyContent: '<p></p>',
+            success: function () {
+                $("#addform").submit();
+
+
+                this.close();
+            }
+        });
+        dialog.show();
+    });
+    
+
+</script>

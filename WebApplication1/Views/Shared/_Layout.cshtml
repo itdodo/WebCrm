@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Webdiyer.WebControls.Mvc
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -6,22 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 管理系统</title>
     @Styles.Render("~/Script/bui/assets/css")
-    @*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")*@
-    
-    @Scripts.Render("~/Script/bui/assets/js")
 
-    @Scripts.Render("~/Script/ajaxjs")
+    @RenderSection("styles",required:false)
+
 
 
 </head>
 <body>
 
         @RenderBody()
+    @Scripts.Render("~/Script/bui/assets/js")
 
-
+    @Scripts.Render("~/Script/ajaxjs")
+    @Scripts.Render("~/bundles/jqueryval")
     @*@Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
+    
 </body>
 </html>

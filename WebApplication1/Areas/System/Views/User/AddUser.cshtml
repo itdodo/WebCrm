@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+<div class="row">
+    @using (Ajax.BeginForm("AddUser", "User", new AjaxOptions { HttpMethod = "Post", OnSuccess = "onSuccess" }, new { @class = "form-horizontal", id = "addform", name = "addform" }))
+    {
+        <div class="row">
+            <div class="control-group">
+                <label class="control-label">账号：</label>
+                <div class="controls">
+                    <input type="text" name="UserName" class="control-text">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">密码：</label>
+                <div class="controls">
+                    <input type="text" name="Password" class="control-text" placeholder="不填密码默认6个8">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">所属角色：</label>
+                <div class="controls">
+                    @Html.DropDownList("RoleId", ViewBag.roleList as SelectList,"请选择角色")
+                </div>
+            </div>
+            <div class="form-actions offset3">
+                <button class="button button-primary" type="submit">确定</button>
+            </div>
+        </div>
+    }
+</div>

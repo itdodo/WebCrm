@@ -44,6 +44,7 @@ namespace Do.Web
                  "~/Scripts/bui/assets/js/bui.js",
                  "~/Scripts/bui/assets/js/config.js",
                  "~/Scripts/jquery.nicescroll.js",
+                 "~/Scripts/toastr/toastr.min.js",
                  "~/Scripts/base.js"
             ));
 

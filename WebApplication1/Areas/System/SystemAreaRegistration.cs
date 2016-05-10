@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Do.Web.Areas.System
+namespace Do.Web.Backend.Areas.System
 {
     public class SystemAreaRegistration : AreaRegistration 
     {

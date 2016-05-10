@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Do.Db.Oracle;
 using Do.Entity;
 
 namespace Do.Dal
@@ -14,6 +15,6 @@ namespace Do.Dal
         {
         }
 
-        public DbSet<Menu> Menus { get; set; } 
+        public DbSet<SysMenu> Menus { get; set; } 
     }
 }

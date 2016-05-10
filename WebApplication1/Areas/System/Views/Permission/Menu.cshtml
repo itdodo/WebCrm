@@ -3,93 +3,68 @@
     //Layout = null;
     ViewBag.Title = "菜单管理";
 }
-
+@model List<Do.Db.Oracle.SysMenu>
 <div class="main-content">
     <div class="row">
-        <p>
-            <button id="btnAdd" class="button button-primary">新增菜单</button>
-            <button id="btnSearch" class="button button-primary">搜索</button>
-        </p>
+        <div class="span16">
+            <p>
+                <button id="btnAdd" class="button button-primary">添加</button>
+            </p>            
+        </div>
+
     </div>
 
     <div class="row">
-        <div class="span16">
-            <div id="grid">
+        <div class="">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>地址</th>
+                    <th>创建者</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
 
-            </div>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Url</td>
+                        <td>@item.CreateBy</td>
+                        <td>@item.CreateAt</td>
+                        <td><a class="button button-info button-small">修改</a>&nbsp;&nbsp;&nbsp;<a onclick="delMenu('@item.MenuId')" class="button button-danger button-small">删除</a></td>
+                    </tr>
+                }
+                
+
+            </table>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
-    function search(parameters) {
-        loadGridData();
-    }
 
-    function loadGridData(parameters) {
-        var Grid = BUI.Grid, Data = BUI.Data;
-        var Grid = Grid, Store = Data.Store,
-            columns = [
-                { title: 'ID', dataIndex: 'MenuId', width: 50 },
-                { id: '123', title: '菜单名称', dataIndex: 'MenuName', width: 100 },
-                { title: 'Url', dataIndex: 'MenuUrl', width:100 },
-                { title: '创建者', dataIndex: 'UserName', width: 100 },
-                { title: '创建时间', dataIndex: 'CreateAt', width: 100 }
-            ];
+    $(function() {
 
-        /**
-        * 自动发送的数据格式：
-        *  1. start: 开始记录的起始数，如第 20 条,从0开始
-        *  2. limit : 单页多少条记录
-        *  3. pageIndex : 第几页，同start参数重复，可以选择其中一个使用
-        *
-        * 返回的数据格式：
-        *  {
-        *     "rows" : [{},{}], //数据集合
-        *     "results" : 100, //记录总数
-        *     "hasError" : false, //是否存在错误
-        *     "error" : "" // 仅在 hasError : true 时使用
-        *   }
-        *
-        */
-        var store = new Store({
-            url: '/System/Permission/GetMenuList',
-            autoLoad: true, //自动加载数据
-            params: { //配置初始请求的参数
-                a: 'a1',
-                b: 'b1'
-            },
-            pageSize: 3	// 配置分页数目
-        }),
-            grid = new Grid.Grid({
-                render: '#grid',
-                columns: columns,
-                loadMask: true, //加载数据时显示屏蔽层
-                store: store,
-                // 底部工具栏
-                bbar: {
-                    // pagingBar:表明包含分页栏
-                    pagingBar: true
-                }
-            });
+    });
 
-        grid.render();
-    }
-
-    $('#btnAdd').on('click', function () {
+    $('#btnAdd').on('click', function() {
         //dialog.set({ effect: "fade", duration: 400 });
         //弹出对话框
         var Overlay = BUI.Overlay;
         var dialog = new Overlay.Dialog({
             title: '新增菜单',
             width: 500,
-            height: 250,
+            //height: 250,
             loader: {
                 url: "/System/Permission/AddMenu"
             },
+            buttons: [],
             //bodyContent: '<p></p>',
-            success: function () {
-                $("#addform").submit();
+            success: function() {
+                //$("#addform").submit();
 
 
                 this.close();
@@ -97,8 +72,16 @@
         });
         dialog.show();
     });
-    $('#btnSearch').on('click', search);
-    $(function() {
-        loadGridData();
-    });
+
+    function delMenu(id) {
+        BUI.Message.Confirm('确认要删除么？', function () {
+            //setTimeout(function () {
+            //    BUI.Message.Alert('这只是简单的错误信息', 'error');
+            //});
+            //alert(1);
+            $.post("/System/Permission/DeleteMenu",{id:id},function(d) {
+                
+            });
+        }, 'question');
+    }
 </script>

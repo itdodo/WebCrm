@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Do.Bll", "Do.Bll\Do.Bll.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Do.Common", "Do.Common\Do.Common.csproj", "{04C04FE9-D091-4EAE-B254-05CC19231621}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Do.Db.Oracle", "Do.Db.Oracle\Do.Db.Oracle.csproj", "{FADF612A-F6A3-4D8E-B50F-BFA22C508ED0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.DB", "1.DB", "{44CDD08F-A805-40DC-9B53-1C41085BC26C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.DAL", "2.DAL", "{360FF6C9-AD26-436D-8F4F-783F6D296723}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,8 +45,16 @@ Global
 		{04C04FE9-D091-4EAE-B254-05CC19231621}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04C04FE9-D091-4EAE-B254-05CC19231621}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04C04FE9-D091-4EAE-B254-05CC19231621}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FADF612A-F6A3-4D8E-B50F-BFA22C508ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FADF612A-F6A3-4D8E-B50F-BFA22C508ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FADF612A-F6A3-4D8E-B50F-BFA22C508ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FADF612A-F6A3-4D8E-B50F-BFA22C508ED0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C7C1D947-54FC-4370-834E-DE6FD1FE46C9} = {360FF6C9-AD26-436D-8F4F-783F6D296723}
+		{FADF612A-F6A3-4D8E-B50F-BFA22C508ED0} = {44CDD08F-A805-40DC-9B53-1C41085BC26C}
 	EndGlobalSection
 EndGlobal

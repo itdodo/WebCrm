@@ -1,0 +1,20 @@
+﻿
+@{
+    Layout = null;
+}
+<div class="row">
+    @using (Ajax.BeginForm("AddRole", "Role", new AjaxOptions { HttpMethod = "Post", OnSuccess = "onSuccess" }, new { @class = "form-horizontal", id = "addform", name = "addform" }))
+    {
+        <div class="row">
+            <div class="control-group">
+                <label class="control-label">角色名称：</label>
+                <div class="controls">
+                    <input type="text" name="Name" class="control-text">
+                </div>
+            </div>
+            <div class="form-actions offset3">
+                <button class="button button-primary" type="submit">确定</button>
+            </div>
+        </div>
+    }
+</div>
