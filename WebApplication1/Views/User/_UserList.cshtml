@@ -1,0 +1,31 @@
+﻿
+<table class="table">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>账号</th>
+        <th>创建者</th>
+        <th>创建时间</th>
+        <th>操作</th>
+    </tr>
+
+    </thead>
+    @{ int num = (Model.CurrentPageIndex - 1) * Model.PageSize;}
+    @foreach (var item in Model)
+    {
+        num = num  + 1;
+        <tr>
+            <td>@num</td>
+            <td>@item.UserName</td>
+            <td>@item.CreateBy</td>
+            <td>@item.CreateAt</td>
+            <td>
+                <a onclick="resetPwd('@item.UserId')" class="button button-info button-small" title="默认密码888888">重置密码</a>&nbsp;&nbsp;&nbsp;
+                <a onclick="delMenu('@item.UserId')" class="button button-danger button-small">删除</a>
+ 
+            </td>
+        </tr>
+    }
+
+
+</table>

@@ -18,29 +18,26 @@ using Do.Web.Backend.Fliter;
 
 namespace Do.Web.Backend.Controllers
 {
-    [Description("系统主页")]
+    [Module(Code = "01",Name = "首页")]
     public class HomeController : BaseController
     {
-        //[AllowAnonymous]
-        [Description("系统首页")]
+
+        [Module(Code = "0101",Name = "系统首页")]
         public ActionResult Index()
         {
             //TODO
             //获取当前登陆用户所拥有的一级导航菜单
-            var menu1 = new RoleMenuBll().GetList(c => c.RoleId == CurrentUser.RoleId).Where(c=>c.SysMenu.ParentId=="0");
+            #region 暂时不做多个一级菜单
+            //var menu1 = new RoleMenuBll().GetList(c => c.RoleId == CurrentUser.RoleId).Where(c=>c.SysMenu.ParentId=="0");
             
-            //var a = CurrentUser.RoleId;
-            //var menuBll = new MenuBll();
-            //var menu1 = menuBll.GetMenuByPid("0");
-            //menuBll.GetList()
-            ViewBag.menu1 = menu1;
+            //ViewBag.menu1 = menu1;
+            #endregion
+
             return View();
         }
-        /// <summary>
-        /// 初始化系统左边菜单
-        /// </summary>
-        /// <returns></returns>
-        [Description("初始化系统左侧菜单")]
+
+
+        [Module(Code = "0102", Name = "初始化左侧菜单")]
         public ActionResult InitLeftMenu()
         {
             var menuBll = new MenuBll();
@@ -92,20 +89,18 @@ namespace Do.Web.Backend.Controllers
             return Json(entityList1, JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// 系统登陆
-        /// </summary>
-        /// <returns></returns>
-        [Description("请求登陆页面")]
+
+        [Module(Code = "0103", Name = "登陆页面")]
         [AllowAnonymous]
         public ActionResult Login()
         {
-            var list = GetAllActionByAssembly();
             var model = new LoginViewModel();
             FormsAuthentication.SignOut();
             return View(model);
         }
-        [Description("发送登陆请求")]
+
+
+        [Module(Code = "0104", Name = "发送登陆请求")]
         [AllowAnonymous]
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
@@ -133,11 +128,8 @@ namespace Do.Web.Backend.Controllers
             return Json(new RetJson() { Code = 200, Msg = "登陆成功" });
         }
 
-        /// <summary>
-        /// 退出登陆
-        /// </summary>
-        /// <returns></returns>
-        [Description("退出系统")]
+
+        [Module(Code = "0105", Name = "退出登陆")]
         [AllowAnonymous]
         public ActionResult Logout()
         {
@@ -146,7 +138,8 @@ namespace Do.Web.Backend.Controllers
             return RedirectToAction("Login");
         }
 
-        [Description("获取验证码")]
+
+        [Module(Code = "0106", Name = "获取验证码")]
         [AllowAnonymous]
         public ActionResult GetValidateCode()
         {
@@ -155,40 +148,6 @@ namespace Do.Web.Backend.Controllers
             Session["ValidateCode"] = code;
             byte[] bytes = vCode.CreateValidateGraphic(code);
             return File(bytes, @"image/jpeg");
-        }
-
-        public IList<ActionPermission> GetAllActionByAssembly()
-        {
-            var result = new List<ActionPermission>();
-
-            var types = Assembly.Load("Do.Web.Backend").GetTypes();
-
-            foreach (var type in types)
-            {
-                if (type.BaseType.Name == "BaseController")//如果是Controller
-                {
-                    var members = type.GetMethods();
-                    foreach (var member in members)
-                    {
-                        if (member.ReturnType.Name == "ActionResult")//如果是Action
-                        {
-
-                            var ap = new ActionPermission();
-
-                            ap.ActionName = member.Name;
-                            ap.ControllerName = member.DeclaringType.Name.Substring(0, member.DeclaringType.Name.Length - 10); // 去掉“Controller”后缀
-
-                            object[] attrs = member.GetCustomAttributes(typeof(System.ComponentModel.DescriptionAttribute), true);
-                            if (attrs.Length > 0)
-                                ap.Description = (attrs[0] as System.ComponentModel.DescriptionAttribute).Description;
-
-                            result.Add(ap);
-                        }
-
-                    }
-                }
-            }
-            return result;
         }
     }
 
@@ -246,6 +205,7 @@ namespace Do.Web.Backend.Controllers
         /// </summary>
         public virtual string Description { get; set; }
 
-
+        public virtual string Code { get; set; }
+        public virtual string Name { get; set; }
     }
 }

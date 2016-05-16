@@ -64,15 +64,15 @@ namespace Do.Web.Backend.Fliter
 
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
-            string actionName = filterContext.ActionDescriptor.ActionName;
-            var roleMenu = new RoleMenuBll().GetList(c => c.RoleId == CurrentUser.RoleId);
-            var menuList = new MenuBll().GetList();
-            var q = from a in menuList
-                    join b in roleMenu on a.MenuId equals b.MenuId
-                    where b.RoleId == CurrentUser.RoleId
-                    select new { a.Url };
-            filterContext.Result = null;
+            //string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
+            //string actionName = filterContext.ActionDescriptor.ActionName;
+            //var roleMenu = new RoleMenuBll().GetList(c => c.RoleId == CurrentUser.RoleId);
+            //var menuList = new MenuBll().GetList();
+            //var q = from a in menuList
+            //        join b in roleMenu on a.MenuId equals b.MenuId
+            //        where b.RoleId == CurrentUser.RoleId
+            //        select new { a.Url };
+            //filterContext.Result = null;
 
             //foreach (var item in q)
             //{

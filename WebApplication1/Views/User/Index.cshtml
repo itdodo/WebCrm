@@ -1,0 +1,82 @@
+﻿
+@{
+    //Layout = null;
+    ViewBag.Title = "用户列表管理";
+}
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Do.Db.Oracle.SysUser>
+@section styles
+{
+    <link href="~/Scripts/toastr/toastr.css" rel="stylesheet" />
+}
+@section scripts
+{
+    @{ Html.RegisterMvcPagerScriptResource(); }
+    <script type="text/javascript">
+
+    $(function() {
+
+    });
+
+    $('#btnAdd').on('click', function() {
+        //弹出对话框
+        var Overlay = BUI.Overlay;
+        var dialog = new Overlay.Dialog({
+            title: '新增用户',
+            width: 500,
+            loader: {
+                url: "/System/User/AddUser"
+            },
+            buttons: [],
+            success: function() {
+                //$("#addform").submit();
+
+
+                this.close();
+            }
+        });
+        dialog.show();
+    });
+
+    function delMenu(uid) {
+        BUI.Message.Confirm('确认要删除么？', function () {
+            $.post("/System/User/DeleteUser", { id: uid },onSuccess);
+        }, 'question');
+    }
+
+    function resetPwd(uid) {
+        BUI.Message.Confirm('确认要重置用户密码么？', function () {
+            $.post("/System/User/ResetPassword", { id: uid },onSuccess);
+        }, 'question');
+    }
+</script>
+}
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="span16">
+            <p>
+                <button id="btnAdd" class="button button-primary">添加</button>
+            </p>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="">
+            <div id="datalist">
+                @Html.Partial("_UserList",Model)
+            </div>
+            
+            @Ajax.Pager(Model, new PagerOptions
+            {
+                PageIndexParameterName = "id",
+                ContainerTagName = "ul",
+                CssClass = "pagination",
+                CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+                DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+                PagerItemTemplate = "<li>{0}</li>"
+            }).AjaxOptions(a => a.SetUpdateTargetId("datalist"))
+        </div>
+    </div>
+</div>
+

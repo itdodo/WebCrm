@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="retResult.cs" />
   </ItemGroup>

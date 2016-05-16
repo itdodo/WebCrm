@@ -76,7 +76,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheHelper.cs" />
+    <Compile Include="CustomAttribute\ModuleAttribute.cs" />
     <Compile Include="Extension.cs" />
+    <Compile Include="Reflect.cs" />
     <Compile Include="ValidateCode.cs" />
     <Compile Include="RetJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
